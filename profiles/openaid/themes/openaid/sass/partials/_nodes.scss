@@ -1,0 +1,237 @@
+div.node {   
+   padding: 0 50 / 712 * 100%;      
+   position: relative;
+   padding-bottom: 20px;
+   .submitted {
+     @include adjust-font-size-to(11px);     
+     .type {
+       text-transform: uppercase;
+       @include adjust-font-size-to(12px);
+       padding-right: 13px;
+       font-weight: bold;
+       @include icon(100% -535px);
+       margin-right: 5px;
+     }
+     margin-bottom: 25px;
+   }
+   .submitted:before {
+     content: "";
+     position: absolute;
+     left: -12px;
+     top: 0;
+     width: 30px;
+     height: 24px;
+   }
+   &.node-blog-post .submitted:before {
+     @include icon(0 0);
+   }
+   &.node-resource .submitted:before {
+     @include icon(0 -48px);
+   }      
+   &.node-image .submitted:before {
+     @include icon(0 -97px);
+   }  
+   
+   // Image fields
+   .field-name-field-image-file,
+   .field-name-field-preview-image {
+     float: left;
+     img {
+       float: left;
+     }
+     padding: 3px;
+     @include box-shadow(rgba(0, 0, 0, .4) 0 1px 3px);       
+     margin-bottom: 1em;
+   }
+   
+   // Inline Links
+   ul.inline.links {
+     list-style: none;
+     margin: 0 0 $base-line-height 0;
+     padding: 0; 
+     float: left;
+     li {
+       @include float-left;
+       margin: 0 5px 0 0;
+       @include adjust-font-size-to(12px);
+       a {
+         color: $navy-darkest;
+         text-transform: capitalize;
+         text-decoration: none;
+         font-weight: bold;  
+         &:hover {
+           text-decoration: underline;
+         }
+       }
+       margin-right: 20px;
+     }
+     // Todo: determine if these should really be hidden
+     li.comment-comments, li.comment-new-comments, li.comment-add {
+       display: none;
+     }
+     li.node-readmore {
+       a {
+         @include icon(100% -172px);
+         padding-right: 14px;           
+       }
+     }
+   }
+
+   // Author
+   .field-name-field-author {
+     margin-bottom: $base-line-height;
+     .field-name-field-author-photo {
+       @include float-left;
+       margin-right: 8px;
+       img {
+         display: block;   
+         padding: 1px;
+         border: 1px solid $gray-light;
+       }
+     }
+     h3 {
+       @include adjust-font-size-to(13px, 1);
+       @extend .ff-sans-serif; 
+       font-weight: bold;
+       margin: 0;
+       padding-top: 2px;
+     }
+     .field-name-field-organization-title {
+       @include adjust-font-size-to(11px, 1);
+       color: $gray-dark;
+     }
+   }            
+   
+   .field-name-body {
+     clear: left;
+   }
+
+   // Download files:
+   .field-name-field-resource-file {  
+     font-weight: bold;
+     @include adjust-font-size-to(12px, 1);
+     vertical-align: middle;
+     margin-bottom: 20px;
+     img {
+       float: left;
+       margin-right: 5px;
+     }
+     a {       
+       text-decoration: none;
+       color: $navy-darkest;  
+       &:hover{
+         text-decoration: underline;  
+       }
+     }
+   }
+   .field-name-field-file-attachments {
+     @include border-radius();
+     background: $gray-white;
+     border: 1px solid $gray-lightest;
+     padding: 10px;
+     .field-label{
+       @include adjust-font-size-to(14px, 1);          
+       font-weight: bold; 
+       margin: 0 0 .5em 0;
+     }
+     .field-item {
+       @include adjust-font-size-to(12px, 1.25);   
+       img {
+         float: left;
+         clear: left;
+         margin: 2px 5px 0 0;
+       }
+       a {
+         text-decoration: none;
+         color: $navy-dark;
+         &:hover {
+           text-decoration: underline;
+         }
+       }
+     }
+   }
+
+   // Tags
+   .tags {        
+     float: left;  
+     @include adjust-font-size-to(11px);
+     @include icon(0 -148px);     
+     font-weight: bold;
+     padding-left: 20px;     
+     .field {       
+       float: left;
+       .field-items {
+         float: left;
+         .field-item {
+           float: left;  
+           margin-right: 20px;
+           a {
+             text-decoration: none;
+             &:hover {
+               text-decoration: underline;
+             }
+           }
+         }
+       } 
+     }
+   }
+   
+   // Embedded images:
+   .image-content-inline {
+     width: 200px;
+   }
+    
+   &.node-teaser{
+     padding: 20px 50 / 712 * 100%;
+     border-top: 1px solid $gray-light;
+     .submitted:before {
+       top: 1.5em;
+     }
+     .field-name-field-preview-image {
+       float: right;
+       margin-left: 30px;
+     }
+   }
+}                                
+.no-sidebars div.node {
+  padding-left: cp(50,$width-full);
+  padding-right: cp(50,$width-full);
+}     
+#sidebar-first div.node {    
+  padding: 0;
+  border: none;
+  h2 {
+    @extend .ff-sans-serif;
+    @include adjust-font-size-to(16px, 1.25);
+    font-weight: bold;
+  }       
+  .submitted:before {
+    background: none;
+  }
+  .submitted, .field-name-field-author {
+    display: none;
+  }
+  .field-name-field-preview-image {
+    width: cp(150, $width-sidebar);
+    float: right;
+    margin-left: 20px;
+  }
+  ul.inline.links {
+    list-style: none;
+    margin: 0;
+  }
+  .field-name-body{
+    margin-bottom: 1em;
+  }  
+}
+div.node-image {
+  h2, ul.inline.links li.node-readmore {
+    display: none;
+  }
+}
+div.node-blog-post {
+  .field-name-field-preview-image {
+    float: right;
+    margin-left: 20px;
+  }
+}

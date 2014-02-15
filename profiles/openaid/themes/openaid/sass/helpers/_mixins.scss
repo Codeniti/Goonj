@@ -1,0 +1,16 @@
+@mixin icon($normal: 0 0, $hover: "none") {
+  @include background-image(image-url("icons.png"));
+  background-repeat: no-repeat;
+  background-position: $normal;
+  @if $hover != 'none' {
+    &:hover {
+      background-position: $hover;
+    }
+  }
+}
+
+.image-shadow {
+  @include box-shadow(rgba($black, 0.3) 0 1px 3px 0, rgba($black, 0.2) 0 0 4px 0 inset);
+  border: solid 5px $white;
+  display: block;
+}

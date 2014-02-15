@@ -1,0 +1,57 @@
+<?php
+
+/*
+ * Implements hook_modules_enabled() 
+ */
+function openaid_tags_topics_extra_modules_enabled($modules) {
+  // quit here if main feature was not enabled
+  if (!in_array('openaid_tags_topics', $modules)) return;
+
+  // set facet settings
+  $settings = array (
+    'weight' => 0,
+    'widget' => 'facetapi_links',
+    'filters' => array(),
+    'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
+      'display' => 'display',
+    ),
+    'sort_weight' => array(
+      'active' => -50,
+      'count' => -49,
+      'display' => -48,
+    ),
+    'sort_order' => array(
+      'active' => 3,
+      'count' => 3,
+      'display' => 4,
+    ),
+    'empty_behavior' => 'none',
+    'soft_limit' => 20,
+    'nofollow' => 1,
+    'show_expanded' => 0,
+  );
+
+  db_merge('facetapi')
+    ->key(array('name' => 'apachesolr@solr:block:im_field_tags'))
+    ->fields(array(
+      'searcher' => 'apachesolr@solr',
+      'realm' => 'block',
+      'facet' => 'im_field_tags',
+      'enabled' => 1,
+      'settings' => serialize($settings),
+    ))
+    ->execute();
+  db_merge('facetapi')
+    ->key(array('name' => 'apachesolr@solr:block:im_field_topics'))
+    ->fields(array(
+      'searcher' => 'apachesolr@solr',
+      'realm' => 'block',
+      'facet' => 'im_field_topics',
+      'enabled' => 1,
+      'settings' => serialize($settings),
+    ))
+    ->execute();
+} // openaid_tags_topics_extra_modules_enabled()
+

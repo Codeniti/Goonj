@@ -1,0 +1,231 @@
+// Search form:
+.search-form, #search-block-form {
+  .form-item-keys {
+    label {
+      display: none;
+      float: left;
+      margin-right: 10px;
+    }
+  }
+  .form-text {
+    @include border-left-radius(20px);
+    @include border-right-radius(0);
+    height: 23px;
+    float: left;
+    padding-left: 10px;     
+  }
+  .form-submit {
+    @include border-right-radius(20px);
+    @include border-left-radius(0);
+    border: none;      
+    padding: 0 10px 0 10px;
+    height: 23px;
+  }  
+}
+// Search form in sidebar:
+#sidebar-first {
+  .search-form {
+    margin-bottom: 0; 
+    .form-text {
+      width: cp(190, 273);
+    }
+    .form-submit {
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+      width: cp(83,  273);   
+    }
+  }
+}   
+
+// Solr Options:
+.container-inline .form-item-retain-filters, .container-inline .form-item-apachesolr-search-retain-filters {
+  clear: left;
+  display: block;  
+  margin: 1em 0 0 0;
+  label {
+    font-weight: bold;
+  }
+}
+.spelling-suggestions {
+  clear: left;
+  margin-left: cp(50, $width-content);
+  dt, dd {
+    float: left;
+    margin: 0 10px 0 0;  
+    padding: 0;
+  } 
+  dt, dd {
+    @include adjust-font-size-to(12px);
+  }
+  @include legacy-pie-clearfix;    
+}  
+.no-results {
+  clear: both;
+  margin: $base-line-height cp(50, $width-content);
+}       
+
+
+
+.region-content{
+  #block-current-search-standard {
+    h2.block-title {
+      margin-bottom: $base-line-height / 20px;
+    }
+    .block-content {
+      margin: 0 cp(50, $width-content) $base-line-height cp(50, $width-content);
+      h3 {
+        @include adjust-font-size-to(14px);
+        @extend .ff-sans-serif;
+        font-weight: bold;
+        float: left;  
+        margin: 3px 20px 0 0;
+      }
+      .current-search-item{
+        float: left;
+        ul {
+          float: left; 
+          list-style: none;
+          li {
+            float: left;
+            background: $gray-white;
+            margin: 0 10px 0 0; 
+            padding: 3px 10px;
+            @include border-radius(20px); 
+            @include adjust-font-size-to(12px);
+            font-weight: bold;          
+            color: $royal;
+            a {
+              text-decoration: none;
+            }
+          }
+        }
+      }      
+    }    
+  }  
+} 
+
+.no-sidebars {
+  .region-content {
+    #block-current-search-standard {
+      .block-content {
+        margin: 0 cp(50, $width-full) $base-line-height cp(50, $width-full);
+      }      
+    }    
+  }
+}
+
+// Facets:
+.block-facetapi {
+  .block-content {
+    margin: 0;
+    padding: 0;
+    ul.facetapi-facetapi-links{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        margin: 0;  
+        padding: 0;
+        clear: both;
+        border-bottom: 1px solid $gray-light;
+        a {   
+          padding: 1em cp(20, $width-sidebar);          
+          display: block;
+          span.facet-count{
+            float: right;
+            padding: 5px;
+            margin-top: -5px;
+            margin-right: -5px;
+            background: $gray-white;
+            border: 1px solid $gray-lightest;
+            @include border-radius();
+            color: $gray-dark;
+          }  
+          span.facet-remove {
+            float: left;
+            margin-right: 5px;
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }    
+  }
+}    
+
+span.facet-remove {
+  text-indent: -9999px;
+  float: left;
+  margin-right: 5px;
+  width: 12px;
+  height: $base-line-height;
+  @include icon(0 -603px);
+}
+
+a:hover {
+  span.facet-remove {     
+    @include icon(0 -651px);    
+  }
+}
+
+#sidebar-first {
+  .block-facetapi {
+    .block-content {
+      padding: 0;
+    }
+  }  
+}
+
+// Search Results:
+.search-results {
+  h2 {
+    margin-left: cp(50, $width-content);
+    margin-right: cp(50, $width-content);
+  }
+  ol {
+    margin: 0;
+    padding: 0;
+    li {       
+      position: relative;
+      border-top: 1px solid $gray-light;      
+      padding: 0 cp(50, $width-content);
+      div.index {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: .8em 20px;
+        font-weight: bold;
+        @include adjust-font-size-to(14px);        
+      }  
+      .search-info {  
+        @include adjust-font-size-to(11px);
+        margin: 1em 0 .5em 0; 
+        color: $navy-darkest;
+      }
+      h3.title {
+        @include adjust-font-size-to(16px, 1);  
+        margin: 0 0 .25em 0;
+      }
+      .search-snippet-info {
+        margin: 0;
+        padding: 0;
+        @include adjust-font-size-to(11px, .75);
+      }
+    }
+  }
+}
+.no-sidebars {
+  .search-results {
+    h2 {
+      margin-left: cp(50, $width-full);
+      margin-right: cp(50, $width-full);
+    }
+    ol { 
+      li {
+        padding: 0 cp(50, $width-full);
+      }
+    }    
+  }  
+}

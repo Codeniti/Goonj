@@ -1,0 +1,21 @@
+name = "OpenAid Wysiwyg"
+description = "Enables wysiwyg editing"
+core = "7.x"
+package = "Features"
+php = "5.2.4"
+version = "7.x-1.1"
+project = "openaid_wysiwyg"
+dependencies[] = "openaid_wysiwyg_extra"
+dependencies[] = "ctools"
+dependencies[] = "emptyparagraphkiller"
+dependencies[] = "strongarm"
+dependencies[] = "wysiwyg"
+features[ctools][] = "strongarm:strongarm:1"
+features[variable][] = "filter_fallback_format"
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

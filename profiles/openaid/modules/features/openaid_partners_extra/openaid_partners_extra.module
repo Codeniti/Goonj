@@ -1,0 +1,55 @@
+<?php
+
+/*
+ * Implements hook_block_info()
+ */
+function openaid_partners_extra_block_info() {
+  $blocks['partner_info'] = array(
+    'info' => t('Partner Info'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+} // openaid_partners_extra_block_info()
+
+/* 
+ * Implements hook_block_configure()
+ */
+function openaid_partners_extra_block_configure($delta = '') {
+  $form = array();
+
+  if ($delta == 'partner_info') {
+    $text = variable_get('openaid_partners_extra_partner_text', array('value' => '', 'format' => 'full_html'));
+    $form['partner_text'] = array(
+      '#type' => 'text_format',
+      '#title' => t('Partner Text'),
+      '#default_value' => $text['value'],
+      '#format' => $text['format'],
+      '#required' => TRUE,
+    );
+  } // if partner_info
+
+  return $form;
+} // openaid_partners_extra_block_configure()
+
+/*
+ * Implements hook_block_save()
+ */
+function openaid_partners_extra_block_save($delta = '', $edit = array()) {
+  if ($delta == 'partner_info') {
+    variable_set('openaid_partners_extra_partner_text', $edit['partner_text']);
+  } // if partner_info
+} // openaid_partners_extra_block_save()
+
+/*
+ * Implements hook_block_view()
+ */
+function openaid_partners_extra_block_view($delta = '') {
+  $block = array();
+
+  if ($delta == 'partner_info') {
+    $text = variable_get('openaid_partners_extra_partner_text', array('value' => '', 'format' => 'full_html'));
+    $block['content'] = '<div class="partner-text">' . check_markup($text['value'], $text['format']) . '</div>';
+  } // if partner_info
+
+  return $block;
+} // openaid_partners_extra_block_view()

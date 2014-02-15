@@ -1,0 +1,54 @@
+/**
+ * Styles for the Resources page, provided by the Resources feature
+ */
+.page-resources {  
+  .region-content {
+    ol.resources {
+      margin: 0;
+      padding: 0;
+      li.views-row {       
+        position: relative;
+        border-top: 1px solid $gray-light;      
+        padding: 0 cp(50, $width-content);
+        &:hover {
+          background: $blue-white;
+        }
+        .index {
+          position: absolute;
+          left: 0;
+          top: 0;
+          padding: .8em 20px;
+          font-weight: bold;
+          @include adjust-font-size-to(14px);          
+        }  
+        .meta {       
+          @include adjust-font-size-to(11px);          
+          margin: 1em 0 .5em 0; 
+          color: $navy-darkest;
+        }
+        h3 {     
+          @include adjust-font-size-to(16px, 1);            
+          margin: 0 0 .25em 0;
+        }
+        .content {
+          margin: 0;
+          padding: 0 0 $base-line-height 0;
+          @include adjust-font-size-to(11px);
+        }
+      }
+    }    
+  }
+}
+.no-sidebars.page-resources {
+ .search-results {
+   h2 {
+     margin-left: cp(50, $width-full);
+     margin-right: cp(50, $width-full);
+   }
+   ol { 
+     li {
+       padding: 0 cp(50, $width-full);
+     }
+   }    
+ }  
+}                                 

@@ -1,0 +1,51 @@
+#mission-statement {
+  @include background($navy linear-gradient($navy-light, $navy));
+  border-bottom: solid 1px $navy-dark;
+  padding: 11px 0 10px 0;
+  text-align: center;  
+  @include adjust-font-size-to(12px, 1);
+  border-bottom: 1px solid $navy-lightest;
+  @include text-shadow(0 -1px 0 rgba($black, 0.8));  
+  a {
+    color: $blue-lightest;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+
+//Announcement
+
+.announcement {
+  @include float-left;
+  @include text-shadow(0 1px 0 $navy-dark);
+  margin: 0 30px 0 0;
+  padding: 4px 0 0 0;
+  h2 {
+    @include float-left;
+    @include adjust-font-size-to(12px, 1);
+    @extend .ff-sans-serif;
+    color: $white;
+    margin: 0 30px 0 0;
+  }
+  .content {
+    @include float-left;
+    p {
+      @include adjust-font-size-to(12px, 1);
+      color: $blue-lighter;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      @include link-colors($blue-lighter, $white);
+      font-weight: 700;
+    }
+  }
+}
+
+//Back to K4Health
+#block-block-3 {
+  @include float-right;
+}

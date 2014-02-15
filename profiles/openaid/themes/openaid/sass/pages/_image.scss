@@ -1,0 +1,47 @@
+.node-type-image {
+  .field-name-field-image-file {
+    margin-right: 20px;
+    max-width: 100%;
+    img {
+      height: auto !important;
+      width: auto !important;
+    }
+  }
+  .field {
+    clear: left;
+    margin-bottom: $base-line-height;
+  }
+  .tags .field {
+    clear: none;
+    .field-label {
+      float: left;
+    }
+    .field-items {
+      float: left;
+    }
+  }
+  .field-label {
+    @include adjust-font-size-to(11px);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .field-items {
+    color: $navy-dark;
+  }
+  &.no-sidebars {
+    .field-name-field-image-file {
+      max-width: 60%;
+    }
+    .field {
+      clear: none;
+    }
+    @media screen and (max-width: 768px) {
+      .field-name-field-image-file {
+        max-width: 100%;
+      }
+      .field {
+        clear: left;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+name = "OpenAid Countries"
+description = "Countries list for various content types."
+core = "7.x"
+package = "Features"
+php = "5.2.4"
+version = "7.x-1.2"
+project = "openaid_countries"
+dependencies[] = "openaid_countries_extra"
+dependencies[] = "features"
+dependencies[] = "taxonomy"
+features[taxonomy][] = "countries"
+features[user_permission][] = "delete terms in 4"
+features[user_permission][] = "edit terms in 4"
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

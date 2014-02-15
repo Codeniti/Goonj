@@ -1,0 +1,34 @@
+#tabs {
+  ul.primary {
+    background-color: $gray-white;
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 1px 0;
+    width: 100%;
+    li {
+      float: left;
+      line-height: 30px;
+      margin-right: 1px;
+      a {
+        @include link-colors(#666, #000);
+        @include transition(all, .15s);
+        background-color: #fff;
+        float: left;
+        padding: 0 15px;
+        text-decoration: none;
+        &:hover {
+          background-color: #f2f2f2;
+        }
+      }
+      &.active {
+        a {
+          @include link-colors(#000, #333);
+          background-color: #fff;
+          margin-bottom: -1px;
+          padding-bottom: 1px;
+        }
+      }
+    }
+  }
+}

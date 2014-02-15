@@ -1,0 +1,129 @@
+
+//  General
+
+.clearfix {
+  @include legacy-pie-clearfix;
+}
+
+#content {
+  clear: both;
+}
+
+#content-inner {
+  clear: both;
+}
+
+// General
+.one-sidebar {
+  
+  #content {
+    float: left;
+    width: cp($width-content,$width-full);
+    width: 712px;
+  }
+  #sidebar-first {
+    float: right;
+    width: cp($width-sidebar,$width-full);
+    width: 368px;
+  }
+
+}
+
+.container {
+  @include legacy-pie-clearfix;
+  clear: both;
+  margin: 0 auto;
+  position: relative;
+  width: 1080px;
+}
+
+.one-sidebar #main-content {
+  @include background($white image-url("bg_content-faux-columns.png") repeat-y -1266px 0);
+  @include legacy-pie-clearfix;
+}
+
+.no-sidebars #main-content {
+  @include legacy-pie-clearfix;
+  background-color: $white;
+}
+
+@media screen and (max-width: 1120px) {
+  .container {
+    width: 940px;
+  }
+  .one-sidebar {
+    #content {
+      width: 620px;
+    }
+    #sidebar-first {
+      width: 320px;
+    }
+  }
+  .one-sidebar #main-content {
+    background-position: -1358px 0;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .container {
+    width: 758px;
+  }
+  .one-sidebar {
+    #main-content {
+      background-position: -1478px 0;
+    }
+    #content {
+      width: 500px;
+    }
+    #sidebar-first {
+      width: 258px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .one-sidebar #main-content {
+    background-color: $white;
+    background-image: none;
+  }
+  #sidebar-first {
+    @include background($white image-url("bg_content-faux-columns.png") repeat-y 100% 0);
+    border-top: 1px solid $gray;
+  }
+  .container {
+    width: 580px;
+  }
+  
+  .one-sidebar {
+    #content {
+      clear: both;
+      float: none;
+      float: left;
+      width: auto;
+      width: 100%;
+    }
+    #sidebar-first {
+      clear: both;
+      float: none;
+      float: left;
+      width: auto;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  
+  .container {
+    width: 460px;
+  }
+  
+}
+
+@media screen and (max-width: 480px) {
+  
+  .container {
+    width: 98%;
+  }
+
+}
+

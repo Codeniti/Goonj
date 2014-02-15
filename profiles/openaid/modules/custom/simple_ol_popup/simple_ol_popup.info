@@ -1,0 +1,13 @@
+name = "Map Popup"
+description = "Provides a custom map popup behavior."
+core = 7.x
+package = "OpenLayers"
+php = 5.2
+files[] = openlayers
+dependencies[] = ctools
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

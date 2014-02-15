@@ -1,0 +1,78 @@
+// Available Fonts & Weights From Google Fonts
+// Droid Serif Bold 700
+// Open Sans Regular 400
+// Open Sans Regular Italic 400
+// Open Sans Bold 700
+// Open Sans Bold Italic 700
+
+.ff-serif {
+  font-family: 'Droid Serif', Georgia, serif;
+}
+.ff-sans-serif {
+  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, "Lucida Grande", Verdana, sans-serif;
+}
+
+body {
+  @extend .ff-sans-serif;
+  font-weight: 400;
+  color: $navy-light;
+}
+
+h2, h3, h4, h5, h6 {
+  @extend .ff-serif;
+  font-weight: normal;
+  margin: 0 0 $base-line-height 0;
+  a {
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+h1 {
+  @extend .ff-serif;
+  font-weight: 700; 
+}
+
+h2 {
+  @include adjust-font-size-to(18px, 1.25);
+}
+
+h4 {
+  @include adjust-font-size-to(15px,1);
+}
+
+h1.page-title {
+  @include adjust-font-size-to(24px, 1.5);
+  margin: 0 cp(50,$width-content) $base-line-height cp(50,$width-content);
+}
+
+.no-sidebars {
+  h1.page-title {
+    margin-left: cp(50,$width-full);
+    margin-right: cp(50,$width-full);
+  }
+}
+
+blockquote {
+  margin: 0 cp(50,$width-content) $base-line-height cp(50,$width-full);
+  p {
+    @extend .ff-serif;
+    @include adjust-font-size-to(16px,1.4);
+  }
+}
+
+p {
+  margin: 0 0 $base-line-height 0;
+  padding: 0;
+}
+
+ul, ol {
+  margin: 0 0 $base-line-height cp(20,430);
+  padding: 0;
+}
+
+a {
+  color: $royal-dark;
+}

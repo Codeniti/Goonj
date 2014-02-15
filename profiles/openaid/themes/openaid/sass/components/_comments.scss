@@ -1,0 +1,36 @@
+
+.indented {
+  margin-left: cp(25,$width-content);
+}
+
+.comment {
+  padding: 0 0 $base-line-height 0;
+  .submitted {
+    @include border-radius(3px);
+    background-color: $gray-lightest;
+    margin: 0 0 $base-line-height 0;
+    padding: 3px 8px;
+    position: relative;
+    &:before {
+       content: " ";
+       border-left: 8px solid transparent;
+       border-right: 8px solid transparent;
+       border-top: 8px solid $gray-lightest;
+       height: 0;
+       left: 10px;
+       position: absolute;
+       bottom: -8px;
+       width: 0;
+     }
+    .permalink {
+      display: inline-block;
+      margin-right: 5px;
+      text-decoration: none;
+    }
+    .comment-author-date {
+      font-weight: 600;
+    }
+  }
+  
+}
+

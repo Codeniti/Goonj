@@ -1,0 +1,106 @@
+<?php
+
+/*
+ * Implements hook_modules_enabled() 
+ */
+function openaid_resources_solr_extra_modules_enabled($modules) {
+  // quit here if main feature was not enabled
+  if (!in_array('openaid_resources_solr', $modules)) return;
+
+  // add solr indexing
+  db_merge('apachesolr_index_bundles')
+    ->key(array('env_id' => 'solr', 'entity_type' => 'node', 'bundle' => 'resource'))
+    ->execute();
+
+  // add solr search page
+  db_merge('apachesolr_search_page')
+    ->key(array('page_id' => 'resources'))
+    ->fields(array(
+      'label' => 'Resources',
+      'description' => 'Search for resources',
+      'search_path' => 'resources',
+      'page_title' => 'Resources',
+      'env_id' => 'solr',
+      'settings' => serialize(array(
+        'fq' => array(
+          0 => 'bundle:resource',
+        ),
+        'apachesolr_search_search_type' => 'custom',
+        'apachesolr_search_search_box' => 0,
+        'apachesolr_search_per_page' => '10',
+        'apachesolr_search_browse' => 'blocks',
+        'apachesolr_search_spellcheck' => 1,
+        'apachesolr_search_allow_user_input' => 0,
+      )),
+    ))
+    ->execute();
+  
+} // openaid_resources_solr_extra_modules_enabled()
+
+/*
+ * Implements_hook_context_load_alter()
+ */
+function openaid_resources_solr_extra_context_load_alter(&$context) {
+  if ($context->name == 'resources_default' && isset($_GET['f'][0])) {
+    $context->reactions = array();
+  } // if
+  if ($context->name == 'resources_solr_only' && !arg(1) && !isset($_GET['f'][0])) {
+    $context->reactions = array();
+  } // if  
+} // openaid_resources_solr_extra_context_load_alter()
+
+
+/*
+ * Implements hook_block_info()
+ */
+function openaid_resources_solr_extra_block_info() {
+  $blocks['resources_extra_solr_info'] = array(
+    'info' => t('Resources Extra Solr Info'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+} // openaid_resources_solr_extra_block_info()
+
+/* 
+ * Implements hook_block_configure()
+ */
+function openaid_resources_solr_extra_block_configure($delta = '') {
+  $form = array();
+
+  if ($delta == 'resources_extra_solr_info') {
+    $text = variable_get('resources_extra_solr_info_text', array('value' => '', 'format' => 'filtered_html'));
+    $form['solr_info_text'] = array(
+      '#type' => 'text_format',
+      '#title' => t('Search Help Text'),
+      '#default_value' => $text['value'],
+      '#format' => $text['format'],
+    );
+  } // if resources_extra_solr_info
+
+  return $form;
+} // openaid_resources_solr_extra_block_configure()
+
+/*
+ * Implements hook_block_save()
+ */
+function openaid_resources_solr_extra_block_save($delta = '', $edit = array()) {
+  if ($delta == 'resources_extra_solr_info') {
+    variable_set('resources_extra_solr_info_text', $edit['solr_info_text']);
+  } // if resources_extra_solr_info
+} // openaid_resources_solr_extra_block_save()
+
+/*
+ * Implements hook_block_view()
+ */
+function openaid_resources_solr_extra_block_view($delta = '') {
+  $block = array();
+
+  if ($delta == 'resources_extra_solr_info') {
+    $text = variable_get('resources_extra_solr_info_text', array('value' => '', 'format' => 'filtered_html'));
+    if (!empty($text['value'])) {
+      $block['content'] = '<div class="solr-info-text">' . check_markup($text['value'], $text['format']) . '</div>';
+    } // if text
+  } // if resources_extra_solr_info
+
+  return $block;
+} // openaid_resources_solr_extra_block_view()

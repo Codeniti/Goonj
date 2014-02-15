@@ -1,0 +1,18 @@
+name = "OpenAid Social Links"
+description = "Enables social media links block"
+core = "7.x"
+package = "Features"
+version = "7.x-1.0"
+project = "openaid_social_links"
+dependencies[] = "context"
+dependencies[] = "ctools"
+dependencies[] = "social_links"
+features[context][] = "social_front"
+features[ctools][] = "context:context:3"
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

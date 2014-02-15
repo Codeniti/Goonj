@@ -1,0 +1,47 @@
+name = "OpenAid Site"
+description = "Install all the modules and features for an OpenAid base site."
+core = 7.x
+dependencies[] = admin
+dependencies[] = block
+dependencies[] = ctools
+dependencies[] = comment
+dependencies[] = context
+dependencies[] = context_ui
+dependencies[] = contextual
+dependencies[] = current_search
+dependencies[] = dashboard
+dependencies[] = dblog
+dependencies[] = facetapi
+dependencies[] = features
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = menu_block
+dependencies[] = menu_position
+dependencies[] = module_filter
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = pathauto
+dependencies[] = references
+dependencies[] = search
+dependencies[] = shortcut
+dependencies[] = taxonomy
+dependencies[] = token
+dependencies[] = transliteration
+dependencies[] = views
+dependencies[] = views_ui
+dependencies[] = wysiwyg
+dependencies[] = openaid_base_extra
+dependencies[] = openaid_base
+
+files[] = openaid.profile
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

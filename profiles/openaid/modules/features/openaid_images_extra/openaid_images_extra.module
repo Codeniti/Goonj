@@ -1,0 +1,36 @@
+<?php
+
+/*
+ * Implements hook_modules_enabled() 
+ */
+function openaid_images_extra_modules_enabled($modules) {
+  // quit here if main feature was not enabled
+  if (!in_array('openaid_images', $modules)) return;
+
+  // get the image gallery vid
+  $vocab = taxonomy_vocabulary_machine_name_load('image_gallery');
+
+  // if there's no vocabulary, we have to make it
+  // either the feature isn't making it or it's doing it too late
+  if (!isset($vocab->vid) || empty($vocab->vid)) {
+    $vocab = new stdClass();
+    $vocab->name = 'Image Gallery';
+    $vocab->machine_name = 'image_gallery';
+    taxonomy_vocabulary_save($vocab); // object passed by reference, so it now has an id
+  }
+
+  // add galleries
+  $num_galleries = 3;
+  for ($i = 1; $i <= $num_galleries; $i++) {
+    $name = 'Image Gallery ' . $i;
+    // determine if the term exists
+    $terms = taxonomy_term_load_multiple(array(), array('name' => $name, 'vid' => $vocab->vid));
+    // if term doesn't exist, create it
+    if (count($terms) == 0) {
+      $term = new stdClass();
+      $term->name = $name;
+      $term->vid = $vocab->vid;
+      taxonomy_term_save($term);
+    } // if no terms
+  } // for
+} // openaid_images_extra_modules_enabled()

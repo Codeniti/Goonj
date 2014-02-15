@@ -1,0 +1,59 @@
+
+//  Colors
+//----------------------------------------------------------------------------------------------------
+
+$white:             #ffffff;
+$black:             #000000;
+$black-lighter:     #291511;
+
+$gray-white:        #F0F1F2;
+$gray-lightest:     #E5E5E5;
+$gray-light:        #ECECEC;
+$gray:              #C3C7CC;
+$gray-dark:         #282425;
+
+$red:               #b52847;
+$red-dark:          #95223C;
+
+$green-lighter:     #b1d233;
+$green:             #9cc524;
+$green-dark:        #8cbc1a;
+$green-darker:      #78b00d;
+$green-darkest:     #5e9a08;
+
+$blue-white:        #ecf3f7;
+$blue-lightest:     #c9e7f6;
+$blue-lighter:      #c9e7f6;
+$blue-light:        #ccffff;
+$blue:              #33679a;
+
+$baby-blue:         #93CEED;
+
+$royal-light:       #4870BB;
+$royal:             #3D5CAD;
+$royal-dark:        #4168b6;
+$royal-darkest:     #325190;
+
+$navy-lightest:     #535f79;
+$navy-light:        #4f5b7c; //default
+$navy:              #424c5e;
+$navy-dark:         #313946;
+$navy-darkest:      #182643;
+
+//  Typography
+//----------------------------------------------------------------------------------------------------
+
+$base-font-size: 13px;
+$base-line-height: 18px;
+@include establish-baseline;
+
+//  Widths in px
+//----------------------------------------------------------------------------------------------------
+$width-full: 1080;
+$width-content: 712;
+$width-sidebar: 368;
+
+//  CSS3
+//----------------------------------------------------------------------------------------------------
+
+//$default-border-radius: 3px;

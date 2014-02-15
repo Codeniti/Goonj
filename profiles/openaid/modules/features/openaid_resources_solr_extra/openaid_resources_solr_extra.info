@@ -1,0 +1,10 @@
+name = "OpenAid Resources Solr Extra"
+description = "Non-featurable code for openaid_resources_solr"
+core = "7.x"
+package = "Features"
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

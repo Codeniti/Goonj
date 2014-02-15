@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the OpenAid Captcha feature.
+ */
+
+include_once('openaid_captcha.features.inc');

@@ -1,0 +1,52 @@
+<?php
+
+/*
+ * Implements hook_modules_enabled() 
+ */
+function openaid_resources_extra_modules_enabled($modules) {
+  // quit here if main feature was not enabled
+  if (!in_array('openaid_resources', $modules)) return;
+
+  // get the country vid
+  $vocab = taxonomy_vocabulary_machine_name_load('resource_type');
+
+  // if there's no vocabulary, we have to make it
+  // either the feature isn't making it or it's doing it too late
+  if (!isset($vocab->vid) || empty($vocab->vid)) {
+    $vocab = new stdClass();
+    $vocab->name = 'Resource Type';
+    $vocab->machine_name = 'resource_type';
+    taxonomy_vocabulary_save($vocab); // object passed by reference, so it now has an id
+  } // if
+
+  // add countries
+  $types = array(
+    'Fact Sheets',
+    'Communication Tools',
+    'Press Releases',
+    'Posters',
+    'Banners',
+    'Leaflets',
+    'Billboards',
+    'Logos and Branding Guidelines',
+    'Public Service Announcements',
+    'Football Federation Kits',
+    'Media Kits',
+    'External Reports',
+    'Contacts',
+  );
+
+  foreach ($types as $type) {
+    // determine if the term exists
+    $terms = taxonomy_term_load_multiple(array(), array('name' => $type, 'vid' => $vocab->vid));
+
+    // if term doesn't exist, create it
+    if (count($terms) == 0) {
+      $term = new stdClass();
+      $term->name = $type;
+      $term->vid = $vocab->vid;
+      taxonomy_term_save($term);
+    } // if
+  } // foreach
+  
+} // openaid_resources_extra_modules_enabled()

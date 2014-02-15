@@ -1,0 +1,14 @@
+name = OpenAid Base Extra
+description = Additional settings and configuration changes for OpenAid Base module
+package = Features
+core = 7.x
+dependencies[] = features
+dependencies[] = defaultcontent
+dependencies[] = taxonomy
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

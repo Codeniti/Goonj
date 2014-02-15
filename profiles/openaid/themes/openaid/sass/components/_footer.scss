@@ -1,0 +1,106 @@
+#footer {
+  .container {
+    @include border-bottom-radius(4px);
+    @include box-shadow(rgba($black, 0.2) 0 0 2px 0);
+    background-color: $white;
+    border-top: solid 1px $gray;
+    margin-bottom: $base-line-height * 2;
+    padding: 40px 0;
+  }
+                         
+  ul.menu {
+    list-style: none;
+    float: left;
+    clear: left;
+    @include adjust-font-size-to(11px);
+    margin: 0 0 .5em cp(50, $width-full);
+    li {
+      float: left;
+      margin: 0 10px 0 0;
+      a {
+        font-weight: bold;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .powered-by, .copyright {
+    clear: left;
+    @include adjust-font-size-to(11px);
+    color: $navy-light;
+    float: left;
+    margin-left: cp(50, $width-full);
+    margin-top: .5em;
+    max-width: 40%;
+    span {
+      float: left;
+      margin-right: 5px;
+    }
+    a {
+      float: left;
+      width: 100px;
+      height: 15px;
+      background: url(../images/logo-k4health.png) 0 0 no-repeat;
+      text-indent: -9999px;
+    }
+  } 
+  div.footer-logo {
+    float: right;
+    margin-right: cp(50, $width-full);
+    margin-top: -.75em;
+    max-width: 40%;
+  }
+  @media screen and (max-width: 768px) {
+    .powered-by, .copyright {
+      max-width: 90%;
+    }
+    div.footer-logo {
+      clear: both;
+      float: left;
+      margin-left: cp(50, $width-full);
+      margin-top: 0;
+      max-width: 90%;
+    }
+  }
+}
+
+//USAID Statement
+.usaid-statement {
+  @include float-left;
+  @include adjust-font-size-to(11px, 1);
+  width: cp($width-content,$width-full);
+  .content {
+    padding: 0 cp(50,$width-content);
+  }
+  p {
+    margin: 0;
+  }
+}
+
+//USAID Logo
+.usaid-logo {
+  @include float-right;
+  width: cp($width-sidebar,$width-full);
+  #usaid-logo {
+    a {
+      @include replace-text-with-dimensions("logo_usaid.png", 0, 0);
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  
+  .usaid-statement,
+  .usaid-logo {
+    float: none;
+    width: auto;
+  }
+  .usaid-statement .content {
+    margin-bottom: $base-line-height;
+  }
+
+}

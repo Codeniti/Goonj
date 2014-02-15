@@ -1,0 +1,23 @@
+name = "OpenAid About"
+description = "About section"
+core = "7.x"
+package = "Features"
+php = "5.2.4"
+version = "7.x-1.3"
+project = "openaid_about"
+dependencies[] = "openaid_about_extra"
+dependencies[] = "openaid_base"
+dependencies[] = "ctools"
+dependencies[] = "defaultcontent"
+dependencies[] = "features"
+dependencies[] = "menu"
+dependencies[] = "strongarm"
+features[content][] = "about"
+features[ctools][] = "strongarm:strongarm:1"
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

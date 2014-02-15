@@ -1,0 +1,17 @@
+//Blog List
+
+.view-taxonomy-term {
+  .item-list > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li.views-row {
+      border-top: solid 1px $gray-light;
+      margin: 0;
+      padding: 12px cp(50,$width-content) 47px cp(50,$width-content);
+      &.views-row-first {
+        border: none;
+      }      
+    }
+  }
+}

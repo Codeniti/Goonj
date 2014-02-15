@@ -1,0 +1,54 @@
+;-------------- B A S I C   S E T T I N G S -------------
+name = OpenAid
+description = Base theme for the OpenAid distribution
+core = 7.x
+
+;-------------- F E A T U R E S -------------
+
+;-------------- R E G I O N S -------------
+
+regions[page_top]           = Page Top
+regions[page_bottom]        = Page Bottom
+
+regions[top_banner]         = Top Banner
+regions[header]             = Header
+regions[navigation]         = Navigation
+
+regions[help]               = Help
+regions[highlighted]        = Highlighted
+regions[featured]           = Featured
+regions[content]            = Content
+regions[sidebar_first]      = Sidebar First
+
+regions[footer]             = Footer
+regions[admin_footer]       = Admin Footer
+
+;-------------- C S S -------------
+stylesheets[all][] = css/override/kill/ctools.css
+stylesheets[all][] = css/override/kill/field.css
+stylesheets[all][] = css/override/kill/node.css
+stylesheets[all][] = css/override/kill/system.messages.css
+stylesheets[all][] = css/override/kill/system.menus.css
+stylesheets[all][] = css/override/kill/user.css
+stylesheets[all][] = css/override/kill/views.css
+stylesheets[all][] = css/reset.css
+stylesheets[all][] = css/override/keep/system.base.css
+stylesheets[all][] = css/override/keep/system.theme.css
+stylesheets[all][] = css/override/keep/search.css
+stylesheets[all][] = css/formalize.css
+stylesheets[all][] = css/screen.css
+
+stylesheets[all][] = js/fancybox/jquery.fancybox-1.3.4.css
+
+;-------------- J S -------------
+scripts[] = js/bootstrap-twipsy.js                   
+scripts[] = js/fancybox/jquery.easing-1.3.pack.js
+scripts[] = js/fancybox/jquery.fancybox-1.3.4.pack.js
+
+scripts[] = js/main.js
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

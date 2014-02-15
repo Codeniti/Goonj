@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implement hook_modules_enabled().
+ * Typically, defaultcontent.module waits for cron to create nodes.
+ * This forces node creation immediately, then sets front page URL.
+ */
+function openaid_about_extra_modules_enabled($modules) {   
+
+  // quit here if main feature was not enabled
+  if (!in_array('openaid_about', $modules)) return;
+
+  //module_invoke('defaultcontent', 'cron');
+
+} // openaid_about_extra_modules_enabled
+

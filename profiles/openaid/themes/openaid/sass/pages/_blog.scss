@@ -1,0 +1,105 @@
+//Blog List
+
+.blog-list { 
+  .item-list > ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li.views-row {
+      border-top: solid 1px $gray-light;
+      margin: 0;
+      padding: 12px cp(50,$width-content) 47px cp(50,$width-content);
+      &.first {
+        border: none;
+      }
+    }
+  }
+}
+
+.blog-list,
+.node-blog-post {
+  .field-name-field-blog-series {  
+    @include float-left;
+    @include adjust-font-size-to(11px, 1.4);
+    @include icon(0 -240px);
+    margin: 0 0 12px cp(-72,$width-content);
+    padding: 0 0 0 cp(72,$width-content);
+  }
+  .field-name-post-date {
+    @include float-right;
+    @include adjust-font-size-to(11px, 1.4);
+    @include icon(0 -196px);
+    margin-bottom: 12px;
+    padding-left: 20px;
+  }
+  .field-name-field-preview-image {
+    clear: both;
+    margin-bottom: $base-line-height;
+    img {
+      @extend .image-shadow;
+    }
+  }
+  .group_author_preview, .field-name-field-author {
+    clear: both;
+    margin-bottom: $base-line-height;
+    .photo {
+      @include float-left;
+      margin-right: 8px;
+      img {
+        display: block;
+      }
+    }
+    h3.name {
+      @include adjust-font-size-to(13px, .8);
+      margin: 0;
+      padding-top: 2px;
+      a {
+        text-decoration: none;
+      }
+    }
+    .organization-title {
+      @include adjust-font-size-to(11px, .7);
+      color: $gray-dark;
+    }
+  }
+  h1.page-title {
+    clear: both;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  h2{
+    @extend .ff-serif;
+    @include adjust-font-size-to(24px, 1.5);
+    clear: both;
+    margin-bottom: $base-line-height;
+    a {
+      @include link-colors($red, $red-dark);
+      display: block;
+      text-decoration: none;
+    }
+  }
+  .group_post_utilities {
+    @include legacy-pie-clearfix;
+    .field {
+      display: inline-block;
+      margin: 0 cp(30,$width-content) $base-line-height 0;
+    }
+  }    
+  ul.tags {
+    @include legacy-pie-clearfix;
+    @include adjust-font-size-to(11px, .7);
+    @include icon(0 -278px);
+    margin: 0;
+    padding: 0 0 0 22px;
+    li {
+      @include float-left;
+      border: none;
+      margin: 0;
+      padding: 0 18px 0 0;
+      a {
+        text-decoration: none;
+        font-weight: 600;
+      }
+    }
+  }
+}

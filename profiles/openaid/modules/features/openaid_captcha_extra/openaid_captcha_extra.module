@@ -1,0 +1,24 @@
+<?php
+/*
+ * Implements hook_modules_enabled()
+ */
+function openaid_captcha_extra_modules_enabled($modules) {
+  if (!in_array('openaid_captcha', $modules)) return;
+
+  _openaid_captcha_extra_set_captcha('user_register_form');
+  _openaid_captcha_extra_set_captcha('contact_site_form');
+  _openaid_captcha_extra_set_captcha('contact_personal_form');
+  _openaid_captcha_extra_set_captcha('comment_node_blog_form');
+  _openaid_captcha_extra_set_captcha('comment_node_page_form');
+} // openaid_captcha_extra_modules_enabled()
+
+function _openaid_captcha_extra_set_captcha($form_id) {
+  // enable captcha on the form (db_merge updates or inserts appropriately)
+  db_merge('captcha_points')
+    ->key(array('form_id' => $form_id))
+    ->fields(array(
+        'module' => 'recaptcha',
+        'captcha_type' => 'reCAPTCHA',
+    ))
+    ->execute();
+} // _affliate_captcha_extra_set_captcha()

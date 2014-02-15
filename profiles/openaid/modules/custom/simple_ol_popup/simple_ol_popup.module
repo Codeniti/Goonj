@@ -1,0 +1,7 @@
+<?php
+
+function simple_ol_popup_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'openlayers' && $plugin == 'behaviors') {
+    return 'plugins';
+  }
+}

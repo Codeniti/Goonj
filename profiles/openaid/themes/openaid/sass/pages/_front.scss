@@ -1,0 +1,92 @@
+.front { 
+  #first-time {
+    padding: 50px cp(50,$width-content) 47px cp(50,$width-content);    
+    p {
+      @extend h3;
+    }
+  }
+}
+.view-rotating-marquee { 
+  float: left;
+  width: 100%;
+  div {
+    position: relative;
+    float: left;
+    width: 100%;
+  }
+  background: $gray-dark;
+  img {
+    display: block;
+  } 
+  .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $gray-dark;
+    background: rgba(0, 0, 0, .8);
+    color: #fff;
+    //padding: 20px cp(95, $width-content);
+    padding: 20px 0;
+    //width: cp($width-content - 95 - 95, $width-content);
+    width: 100%;
+    h3 {
+      margin: 0 cp(95, $width-content);
+      @extend .ff-sans-serif;
+      @include adjust-font-size-to(18px);
+      font-weight: bold;
+    }
+    p {
+      margin: 0 cp(95, $width-content);
+    }
+  }
+  .views-slideshow-controls-text-pause { 
+    display: none;
+  }
+  .views-slideshow-controls-text-previous,
+  .views-slideshow-controls-text-next {
+    text-indent: -9999px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    @include icon(0 -385px);
+    position: absolute;
+    bottom: 50px;
+    z-index: 1000;
+  }
+  .views-slideshow-controls-text-previous {
+    left: 25px;     
+  }
+  .views-slideshow-controls-text-next {
+    @include icon(100% -433px);     
+    right: 25px;
+  }
+  #views_slideshow_cycle_teaser_section_rotating_marquee-block {
+    height: 360px !important;
+    overflow: hidden;
+    width: 100% !important;
+  }
+  .views-slideshow-cycle-main-frame-row {
+    height: 360px !important;
+    width: 100% !important;
+    position: relative;
+    text-align: center;
+    img {
+      @include inline-block;
+      height: 360px !important;
+      left: 50%;
+      margin: 0 0 0 -356px;
+      max-width: 712px !important;
+      position: absolute;
+      width: 712px !important;
+    }
+    .caption {
+      text-align: left;
+    }
+    //max-width: 100% !important;
+  }
+  .views-slideshow-cycle-main-frame-row-item {
+    height: 360px !important;
+    width: 100% !important;
+    text-align: center;
+  }
+}

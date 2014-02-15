@@ -1,0 +1,254 @@
+
+body {
+  -webkit-text-size-adjust: none;
+}
+
+//  Headers
+
+h1 {
+  @include adjust-font-size-to(32px);
+}
+h2 {
+	@include adjust-font-size-to(24px);
+}
+h3 {
+  @include adjust-font-size-to(20px);
+}
+h4 {
+  @include adjust-font-size-to(18px);
+}
+h5 {
+  @include adjust-font-size-to(16px);
+}
+h6 {
+  @include adjust-font-size-to(14px);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $base-line-height;
+}
+
+//  Paragraphs
+
+p,
+address {
+  line-height: $base-line-height;
+	margin-bottom: $base-line-height;
+}
+
+//  Links
+
+a {
+  @include link-colors($royal-dark, $royal-darkest);
+  @include transition(color, .15s);
+}
+a:visited {
+  opacity:0.8; /* A bit basic, but it’s a bare minumum... */
+}
+
+//  Lists
+
+ul,
+ol {
+  margin: 0 0 $base-line-height 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul{
+  /* Let’s take care of lists in lists */
+  margin: 0 0 0 20px;
+}
+li {
+  line-height: 1.5em;
+}
+ul {
+  list-style-type: disc;
+  ul {
+    list-style-type: circle;
+  }
+}
+ol {
+  list-style-type: decimal;
+}
+dl {
+  margin-bottom: $base-line-height;
+}
+dt {
+  font-weight: bold;
+}
+dt:after {
+  //content: ":";
+}
+dt::after {
+  //content: ":";
+}
+dd {
+  margin-left: 20px;
+}
+
+//  Quotes
+
+blockquote {
+  line-height: 1.5em;
+}
+blockquote b,
+blockquote .source {
+  /* Mark the source up with either a <b> or another element of your choice with a class of source. */
+  display:block;
+  text-indent:0;
+}
+
+//  General
+
+q,
+i,
+em,
+cite {
+  font-style:italic;
+  font-weight:inherit;
+}
+b,
+strong {
+  font-weight:bold;
+  font-style:inherit;
+}
+mark {
+  background:#ffc;
+}
+s,
+del {
+  text-decoration:line-through;
+}
+small {
+  font-size:0.75em;
+  line-height:1;
+}
+
+//  Code
+
+pre,
+code{
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-size: 1em;
+}
+pre {
+  overflow: auto;
+  margin-bottom: 1.5em;
+  line-height: 20px; /* Having to define explicit pixel values :( */
+}
+code {
+  line-height: 1;
+}
+
+//  Images
+
+img {             
+  width: auto !important;
+  max-width: 100%;
+  height: auto !important;
+  /* Give it some text styles to offset alt text */
+  font-style: italic;
+  color: #c00;
+}
+
+/*--- FLASH/VIDEO ---*/
+object,
+embed,
+video{
+  max-width: 100%;
+  height: auto;
+}
+
+//  Forms
+
+fieldset {
+  //padding:10px;
+  //border:1px solid #ccc;
+  //margin-bottom:1.5em;
+}
+label {
+  display: block;
+  cursor: pointer;
+  line-height: 1.5;
+}
+input,
+textarea {
+  font-family: inherit;
+	font-size: 1em;
+	line-height: 1.5;
+}
+
+[placeholder]{
+  cursor:pointer;
+}
+[placeholder]:active,
+[placeholder]:focus{
+  cursor:text;
+}
+fieldset > :last-child{
+  /* Remove the margin from the last element in the fieldset--this makes our padding more consistent. */
+  margin:0;
+}
+
+//  Tables
+
+table {
+  margin-bottom: $base-line-height;
+  width: 100%;
+  max-width: 100%;
+}
+thead tr:last-of-type th{
+  /* Thicker border on the table-headers of the last row in the table head */
+  border-bottom-width: 1px;
+}
+tbody th{
+  /* Thicker right border on table-headers in the table body */
+  border-right-width: 1px;
+}
+th:empty{
+  /* Hide the borders on any empty table-headers */
+  border: none;
+}
+th,td{
+  vertical-align: middle;
+  padding: 0.75em;
+  //border:1px solid #ccc;
+}
+th {
+  font-weight: bold;
+  text-align: left;
+}
+table [colspan]{
+  /* This looks lovely, trust me... */
+  text-align:center;
+}
+table [rowspan]{
+  /* ...as does this. */
+  vertical-align:middle;
+}
+/*
+Assuming IE has an 'implied' colspan of one on cells without an explicit colspan attribute, fix/undo it.
+See http://jsfiddle.net/csswizardry/UJJay/
+*/
+[colspan="1"]{
+  text-align:left;
+}
+[rowspan="1"]{
+  vertical-align:top;
+}
+tbody tr:nth-of-type(odd){
+  background:rgba(0,0,0,0.05);
+}
+tfoot{
+  text-align:center;
+}
+tfoot td {
+  border-top-width: 1px;
+}
+
+//  Misc
+
+hr{
+  margin:0 0 $base-line-height 0;
+}

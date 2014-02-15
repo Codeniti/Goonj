@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the OpenAid Translate feature.
+ */
+
+include_once('openaid_translate.features.inc');

@@ -1,0 +1,52 @@
+// Content area:
+.region-content {            
+  .block-title {
+    padding: 0 50 / 712 * 100%;
+    @extend .ff-sans-serif; 
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .block-content {
+    padding-bottom: 2em;     
+    // Taxonomy term listings:
+    .term-listing-heading {
+      margin-left: cp(50, $width-content);
+      margin-right: cp(50, $width-content);
+    }
+    #search-form {
+      margin: 0 cp(50, $width-content);
+      background: $gray-lightest;
+      border: 1px solid $gray-light;
+      padding: 10px;
+      @include border-radius();
+      #edit-keys{
+        width: 75%;
+      }
+      margin-bottom: 2em;
+    }
+    .block-content > ul {
+      margin-left: cp(50, $width-content);
+    }    
+  }
+  #user-login, div.profile {
+    margin: 0 cp(50, $width-content);
+  }
+}
+.no-sidebars {
+  .region-content { 
+    .term-listing-heading {
+      margin-left: cp(50, $width-full);
+      margin-right: cp(50, $width-full);
+    }    
+    #search-form {
+      margin-left: cp(50, $width-full); 
+      margin-right: cp(50, $width-full);       
+    }
+    .block-content > ul {
+      margin-left: cp(50, $width-content);
+    } 
+    #user-login, div.profile {
+      margin: 0 cp(50, $width-full);
+    }       
+  }
+}

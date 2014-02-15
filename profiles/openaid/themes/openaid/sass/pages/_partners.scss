@@ -1,0 +1,65 @@
+
+.page-partners {
+  .view-partners {
+    @include legacy-pie-clearfix;
+    margin: 0 cp(50, $width-full) $base-line-height*2;
+    .views-row {
+      float: left;
+      margin: 0;
+      width: 33%;
+      @media screen and (max-width: 768px) {
+        width: 50%;
+      }
+      @media screen and (max-width: 480px) {
+        width: 100%;
+      }
+      .views-field {
+        margin: 0 !important;
+      }
+      a {
+        @include border-radius;
+        @include transition(all, .15s);
+        @include opacity(.8);
+        border: 1px solid $white;
+        display: block;
+        height: 100px;
+        line-height: 100px;
+        //margin: $base-line-height/2 10px;
+        padding: $base-line-height/2 20px;
+        text-align: center;
+        &:hover {
+          @include opacity(1);
+          border: 1px solid $gray;
+        }
+      }
+      img {
+        display: block;
+        display:inline;
+        display:inline-table;
+        display:inline-block;
+        vertical-align:middle;
+        line-height: 100px;
+        margin: 0 auto;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.node-type-partner {
+  .node-partner {
+    .field {
+      margin-bottom: $base-line-height;
+      width: 66%;
+    }
+    .field-label {
+      @include adjust-font-size-to(11px);
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .field-name-field-partner-logo {
+      float: right;
+      width: 30%;
+    }
+  }
+}

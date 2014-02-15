@@ -1,0 +1,169 @@
+//Contributor List
+.no-sidebars.section-contributor #content-inner {
+  padding-right: cp(30,1080);
+}
+.contributor-list {
+  list-style: none;
+  margin: 0 0 $base-line-height 0;
+  padding: 0;
+  .item-list {
+    @include legacy-pie-clearfix;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      @include float-left;
+      margin: 0 cp(20,1000) 20px 0;
+      padding: 0;
+      width: cp(313.33,1000);
+      a {
+        @include legacy-pie-clearfix;
+        border: solid 1px $gray-lightest;
+        display: block;
+        padding: 7px;
+        text-decoration: none;
+        &:hover {
+          background-color: $gray-white;
+          border-color: $gray;
+        }
+        img {
+          @include float-left;
+          display: block;
+          margin: 0 12px 0 0;
+        }
+        .contributor-info {
+          @include float-left;
+          padding: 10px 0 0 0;
+          h3 {
+            @include adjust-font-size-to(12px, .8);
+            color: $royal-dark;
+            margin: 0;
+            padding: 0;
+          }
+          span {
+            @include adjust-font-size-to(11px, .7);
+            color: $gray-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contributor-list ul li {
+    @include float-left;
+    margin: 0 cp(20,1000) 20px 0;
+    width: cp(364,768);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contributor-list ul li {
+    @include float-left;
+    margin: 0 cp(20,1000) 20px 0;
+    width: cp(280,600);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contributor-list ul li {
+    display: block;
+    float: none;
+    margin: 0 cp(20,1000) 20px cp(20,1000);
+    padding: 0;
+    width: auto;
+  }
+}
+
+//Individual Contributor Page
+.node-author-profile {
+  .group-left {
+    margin: 0 cp(50,612) 0 0;
+    width: cp(430,612);
+  }
+  .group-right {
+    width: cp(130,612);
+  }
+  .group_links {
+    @include border-radius(3px);
+    border: solid 1px $gray;
+    margin-bottom: $base-line-height;
+    .field {
+      border-top: solid 1px $gray-light;
+      padding: 12px;
+      a {
+        @include adjust-font-size-to(11px, .9);
+        @include icon;
+        @include link-colors($navy-light);
+        display: block;
+        font-weight: 600;
+        padding: 0 0 0 24px;
+        text-decoration: none;
+      }
+      a.twitter {
+        background-position: 0 0;
+      }
+      a.facebook {
+        background-position: 0 -40px;
+      }
+      a.linkedin {
+        background-position: 0 -20px;
+      }
+      a.website {
+        background-position: 0 -60px;
+      }
+    }
+    .field:first-child {
+      border: none;
+    }
+    .field-name-field-link-twitter {
+      border: none;
+    }
+  }
+}
+
+.node-author-profile {
+  .field-name-field-author-photo {
+    margin: 0 0 $base-line-height 0;
+    img {
+      @extend .image-shadow;
+    }
+  }  
+}
+
+.field-name-related-author-posts {
+  h2 {
+    @include icon(0 -380px);
+    padding: 0 0 0 24px;
+  }
+  ul li a {
+    @include link-colors($red);
+    display: block;
+    padding: 12px 0;
+    text-decoration: none;
+    h3 {
+      @extend .ff-serif;
+      @include adjust-font-size-to(13px, .9);
+      margin: 0;
+      padding: 0;
+    }
+    .date {
+      @include adjust-font-size-to(11px, .7);
+      color: $navy-darkest;
+      font-weight: 600;
+    }
+  }
+}
+
+//Make content single column
+@media screen and (max-width: 768px) {
+  .node-author-profile {
+    .group-left,
+    .group-right {
+      float: none;
+      width: auto
+    }
+  }
+}

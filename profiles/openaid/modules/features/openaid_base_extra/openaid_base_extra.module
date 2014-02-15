@@ -1,0 +1,276 @@
+<?php
+
+/**
+ * Implement hook_modules_enabled().
+ * Typically, defaultcontent.module waits for cron to create nodes.
+ * This forces node creation immediately, then sets front page URL.
+ */
+function openaid_base_extra_modules_enabled($modules) {   
+
+  // quit here if main feature was not enabled
+  if (!in_array('openaid_base', $modules)) return;
+
+  // get the country vid
+  $vocab = taxonomy_vocabulary_machine_name_load('language');
+
+  // if there's no vocabulary, we have to make it
+  // either the feature isn't making it or it's doing it too late
+  if (!isset($vocab->vid) || empty($vocab->vid)) {
+    $vocab = new stdClass();
+    $vocab->name = 'Language';
+    $vocab->machine_name = 'language';
+    taxonomy_vocabulary_save($vocab); // object passed by reference, so it now has an id
+  } // if
+
+  // add languages
+  $types = array(
+    'English',
+    'French',
+  );
+
+  foreach ($types as $type) {
+
+    // determine if the term exists
+    $terms = taxonomy_term_load_multiple(array(), array('name' => $type, 'vid' => $vocab->vid));
+
+    // if term doesn't exist, create it
+    if (count($terms) == 0) {
+      $term = new stdClass();
+      $term->name = $type;
+      $term->vid = $vocab->vid;
+      taxonomy_term_save($term);
+    } // if
+
+  } // foreach
+
+  // set the footer menu title to none
+  db_merge('block')
+    ->key(array(
+      'theme' => 'openaid',
+      'module' => 'menu',
+      'delta' => 'menu-footer-menu',
+    ))
+    ->fields(array(
+      'status' => 0,
+      'weight' => 0,
+      'region' => -1,
+      'custom' => 0,
+      'visibility' => 0,
+      'pages' => '',
+      'title' => '<none>',
+      'cache' => -1,
+    ))
+    ->execute();
+ 
+  // adjust config for current search block
+  db_merge('current_search')
+    ->key(array('name' => 'standard'))
+    ->fields(array(
+      'label' => 'Standard',
+      'settings' => serialize(array(
+        'items' => array(
+          'results' => array(
+            'id' => 'text',
+            'label' => 'Results',
+            'text' => 'Search found [facetapi_results:result-count] items',
+            'wrapper' => 1,
+            'element' => 'h3',
+            'css' => 0,
+            'classes' => '',
+            'weight' => '-50',
+          ),
+          'active_items' => array(
+            'id' => 'active',
+            'label' => 'Active items',
+            'pattern' => '[facetapi_active:active-value]',
+            'keys' => 1,
+            'css' => 0,
+            'classes' => '',
+            'nofollow' => 1,
+            'weight' => '-49',
+          ),
+        ),
+        'advanced' => array(
+          'empty_searches' => 1,
+        ),
+      )),
+    ))
+    ->execute();
+
+} // openaid_base_extra_modules_enabled
+
+/*
+ * Implements hook_node_insert().
+ * If we're adding the "front" or "page-not-found" page nodes, we need to set the "site_frontpage" and "site_404" variables accordingly.
+ */
+function openaid_base_extra_node_insert($node) {
+  if ($node->machine_name == 'front') {
+    variable_set('site_frontpage', 'node/' . $node->nid);
+  }
+  if ($node->machine_name == 'page-not-found') {
+    variable_set('site_404', 'node/' . $node->nid);
+  }
+}
+
+/*
+ * Implements hook_block_info()
+ */
+function openaid_base_extra_block_info() {
+  $blocks['footer_info'] = array(
+    'info' => t('Footer Info'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['powered_by_openaid'] = array(
+    'info' => t('Powered by OpenAid'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+} // openaid_base_extra_block_info()
+
+/* 
+ * Implements hook_block_configure()
+ */
+function openaid_base_extra_block_configure($delta = '') {
+  $form = array();
+
+  if ($delta == 'footer_info') {
+    $form['footer_copyright'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Copyright Holder'),
+      '#description' => t('Enter the name of copyright holder. Do not include the &copy; symbol or the year.'),
+      '#size' => 60,
+      '#default_value' => variable_get('openaid_base_extra_footer_copyright', ''),
+      '#required' => TRUE,
+    );
+    $form['footer_logo'] = array(
+      '#name' => 'files[footer_logo]',
+      '#type' => 'managed_file',
+      '#title' => t('Footer Logo'),
+      '#description' => t('Upload an image file containing the logo or logos you wish to include in the site footer'),
+      '#default_value' => variable_get('openaid_base_extra_footer_logo', ''),
+      '#upload_validators' => array(
+        'file_validate_extensions' => array('gif png jpg jpeg'),
+        'file_validate_is_image' => array(),
+      ),
+      '#upload_location' => 'public://',
+    ); 
+    $form['footer_logo_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Footer Logo URL'),
+      '#description' => t('Enter the full URL for the website the logo should link to. Leave blank for no link.'),
+      '#size' => 60,
+      '#default_value' => variable_get('openaid_base_extra_footer_logo_url', ''),
+    );
+  } // if footer_info
+
+  return $form;
+} // openaid_base_extra_block_configure()
+
+/*
+ * Implements hook_block_save()
+ */
+function openaid_base_extra_block_save($delta = '', $edit = array()) {
+  if ($delta == 'footer_info') {
+    // save the variables
+    variable_set('openaid_base_extra_footer_copyright', $edit['footer_copyright']);
+    variable_set('openaid_base_extra_footer_logo', $edit['footer_logo']);
+    variable_set('openaid_base_extra_footer_logo_url', $edit['footer_logo_url']);
+
+  
+    // get the block id
+    $block = db_select('block', 'b')
+      ->fields('b', array('bid'))
+      ->condition('b.module', 'openaid_base_extra')
+      ->condition('b.delta', 'footer_info')
+      ->condition('b.theme', variable_get('theme_default', ''))
+      ->execute()
+      ->fetchObject();
+
+    $file = file_load($edit['footer_logo']);
+    if (isset($file->filesize) && $file->filesize > 0) {
+      // save the file
+      $file->status = FILE_STATUS_PERMANENT;
+      file_save($file);
+
+      // track the usage
+      db_merge('file_usage')
+        ->key(array(
+          'module' => 'openaid_base_extra',
+          'type' => 'block',
+          'id' => $block->bid,
+        ))
+        ->fields(array(
+          'fid' => $file->fid,
+          'count' => 1,
+        ))
+        ->execute();
+    } // if file has size
+    else {
+      db_delete('file_usage')
+        ->condition('module', 'openaid_base_extra')
+        ->condition('type', 'block')
+        ->condition('id', $block->bid)
+        ->execute();
+    } // else no file
+    
+  } // if footer_info
+} // openaid_base_extra_block_save()
+
+/*
+ * Implements hook_block_view()
+ */
+function openaid_base_extra_block_view($delta = '') {
+  $block = array();
+
+  if ($delta == 'footer_info') {
+    // set the copyright
+    $copyright = variable_get('openaid_base_extra_footer_copyright', '');
+    $block['content'] = '<div class="copyright">' . t('&copy; !year !copyright', array('!year' => date('Y'), '!copyright' => $copyright)) . '</div>';
+    
+    // add the logo
+    $logo_fid = variable_get('openaid_base_extra_footer_logo', '');
+    if (!empty($logo_fid)) {
+      $logo = file_load($logo_fid);
+
+      if (isset($logo->uri)) {
+        $vars = array(
+          'path' => file_create_url($logo->uri),
+          //'width' => '',
+          //'height' => '',
+          //'alt' => '',
+          //'title' => '',
+          'attributes' => array(
+            'class' => array('footer-logo'),
+          ),
+        );
+        $logo_html = theme_image($vars);
+
+        $logo_url = variable_get('openaid_base_extra_footer_logo_url', '');
+        if (!empty($logo_url)) {
+          $logo_html = l($logo_html, $logo_url, array('html' => TRUE));
+        }
+        
+        $block['content'] .= '<div class="footer-logo">' . $logo_html . '</div>';
+      } // if logo uri
+    } // if logo fid
+    elseif ($delta == 'powered_by_openaid') {
+
+      $openaid_link = l('OpenAid', 'http://drupal.org/project/openaid');
+      $block['content'] .= '<div class="powered-by"><p><span>' . t('Powered by') . ' </span> ' . $openaid_link . '</p></div>';
+
+    } // elseif powered_by_openaid
+
+  } // if footer_info
+
+  return $block;
+} // openaid_base_extra_block_view()
+
+
+/*
+ * Implements_hook_context_load_alter()
+ */
+function openaid_base_extra_context_load_alter(&$context) {
+  if ($context->name == 'base_search' && !arg(2) && !isset($_GET['f'][0])) {
+    unset($context->reactions['block']['blocks']['current_search-standard']);
+  }
+}

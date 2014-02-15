@@ -1,0 +1,130 @@
+<?php
+
+function social_links_networks() {
+  return array(
+    'Facebook' => '',
+    'Twitter' => '',
+    'YouTube' => '',
+    'LinkedIn' => '',
+    'RSS' => url('rss', array('absolute' => TRUE)),
+  );
+} // social_links_networks()
+
+/*
+ * Implements hook_block_info()
+ */
+function social_links_block_info() {
+  $blocks['social_links'] = array(
+    'info' => t('Social Links'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+} // social_links_block_info()
+
+/* 
+ * Implements hook_block_configure()
+ */
+function social_links_block_configure($delta = '') {
+  $form = array();
+
+  if ($delta == 'social_links') {
+    foreach (social_links_networks() as $network => $default) {
+      $form[$network . '_link_url'] = array(
+        '#type' => 'textfield',
+        '#title' => t('!network link', array('!network' => $network)),
+        '#description' => t('Enter the full URL for your !network page. Leave blank to remove from display.', array('!network' => $network)),
+        '#default_value' => variable_get('social_links_' . strtolower($network), $default),
+        '#size' => 60,
+      );
+    } // foreach
+
+  } // if social_links
+
+  return $form;
+} // social_links_block_configure()
+
+/*
+ * Implements hook_block_save()
+ */
+function social_links_block_save($delta = '', $edit = array()) {
+  if ($delta == 'social_links') {
+    foreach (social_links_networks() as $network => $default) {
+      if (isset($edit[$network . '_link_url'])) {
+        variable_set('social_links_' . strtolower($network), $edit[$network . '_link_url']);
+      } // if
+    } // foreach
+  } // if social_links
+} // social_links_block_save()
+
+/*
+ * Implements hook_block_view()
+ */
+function social_links_block_view($delta = '') {
+  $block = array();
+
+  if ($delta == 'social_links') {
+    $items = array(); $i = 0;
+    foreach (social_links_networks() as $network => $default) {
+
+      $url = variable_get('social_links_' . strtolower($network), '');
+      if (empty($url)) continue;
+      if (!preg_match('/^http/', $url)) $url = 'http://' . $url;
+          
+      $data = l(
+        t('!network', array('!network' => $network)),
+        $url,
+        array(
+          'attributes' => array(
+            'class' => array('social_link', strtolower($network)),
+            'title' => $network,
+          ),
+        )
+       );
+      
+      $classes = array();
+      
+      if ($i % 2 == 0) {
+        $classes[] = 'odd'; 
+      }
+      else {
+        $classes[] = 'even';
+      }
+      if ($i % 3 == 0) {
+        $classes[] = 'first';
+      }
+      if ($i % 3 == 1) {
+        $classes[] = 'second';
+      }
+      if ($i % 3 == 2) {
+        $classes[] = 'third';
+      }
+      
+      
+
+      $items[] = array(
+        'class' => $classes,
+        'data' => $data,
+      );              
+      
+      $i ++;
+
+    } // foreach
+
+    if (count($items)) {
+      $vars = array(
+        'items' => $items,
+        'title' => '',
+        'type' => 'ul',
+        'attributes' => array(
+          'class' => array('social_links'),
+        ),
+      );
+
+      $block['subject'] = t('Connect With Us');
+      $block['content'] = theme_item_list($vars);
+    } //if items
+
+  } // if social_links
+
+  return $block;
+} // social_links_block_view()

@@ -1,0 +1,136 @@
+.view {
+  .view-content {
+    li.views-row {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  ul.pager {
+    @include legacy-pie-clearfix;
+    border-top: solid 1px $gray-lightest;
+    margin: 0;
+    padding: $base-line-height 50 / 712 * 100%;              
+    text-align: center;
+    li {
+      @include border-radius(3px);
+      border: solid 1px #D6D9DE;
+      border-bottom-color: #BFC2C9;
+      border-top-color: #C4C8CF;
+      color: $gray-dark;
+      display: inline-block;
+      font-weight: 700;
+      margin: 0 6px 0 0;
+      padding: 0;
+      a {
+        @include adjust-font-size-to(10px, 1.2);
+        @include box-shadow(#EBECEF 0 -1px 1px inset);
+        @include link-colors($gray-dark, $green-dark);
+        display: inline-block;
+        text-decoration: none;
+        padding: 0 8px;
+        &:hover {
+          background-color: #E7E9EC;
+        }
+      }
+    }
+    li.pager-current {
+      @include adjust-font-size-to(10px, 1.2);
+      background-color: #E7E9EC;
+      padding: 0 8px;
+    }
+    li.pager-first,
+    li.pager-previous,
+    li.pager-last,
+    li.pager-next {
+      border: none;
+      margin-right: 0; 
+      a {
+        background-color: transparent;
+        @include box-shadow(none);
+        text-transform: uppercase;
+      }
+    }
+  }  
+  ul.pager-load-more { 
+    text-align: left;
+    text-transform: none;
+    li.pager-first,
+    li.pager-previous,
+    li.pager-last,
+    li.pager-next {
+      border: none;
+      a {
+        @include adjust-font-size-to(12px, 1);        
+        text-transform: none;
+        margin: 0; 
+        padding: 0;
+        @include icon(100% -580px);
+        padding-right: 14px;        
+      }
+    }    
+    //  Fix the Throbber & use a loader that looks decent
+    .progress-disabled {
+      float: none;
+    }
+    .ajax-progress {
+      float: none;
+    }
+    .ajax-progress .throbber {
+      background: transparent image-url("ajax-loader.gif") no-repeat 0 0;
+      display: inline-block;
+      float: none;
+      height: 11px;
+      margin: 5px 0 0 0;
+      width: 16px;
+    }
+  }
+}
+#sidebar-first {
+  .views-field-title {
+    @include adjust-font-size-to(14px);
+    font-weight: bold;
+  }
+  .views-field-created {
+    @include adjust-font-size-to(11px);
+  }
+  li.views-row {
+    border-bottom: 1px dotted $gray;
+    padding: 10px 0;
+  }           
+  li.views-row:first-child {
+    padding-top: 0;
+  }  
+  li.views-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  } 
+  .view {
+    .more-link {  
+      background: $white;
+      text-align: center;
+      padding: 10px 0;  
+      a {
+        @extend .learn-more;
+      }
+    }
+  } 
+}     
+
+.region-content {
+  .view {
+    .views-row { 
+      .views-field {
+        margin: 0 cp(50, $width-content);              
+      }
+    }
+  }
+}
+.no-sidebars .region-content .view .views-row .views-field {
+  margin: 0 cp(50, $width-full);
+}
+
+
+
+
+//Pagination

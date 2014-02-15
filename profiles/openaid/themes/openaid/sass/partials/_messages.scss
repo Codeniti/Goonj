@@ -1,0 +1,12 @@
+#messages {
+  @include legacy-pie-clearfix;
+  border-bottom: solid 1px $gray-lightest;
+  font-weight: 600;
+  padding: $base-line-height cp(50,$width-full);
+}
+
+.error {
+  background-color: $red;   
+  padding: 10px;
+  color: $white;
+}

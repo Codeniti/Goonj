@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the OpenAid About feature.
+ */
+
+include_once('openaid_about.features.inc');

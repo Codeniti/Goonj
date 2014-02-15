@@ -1,0 +1,13 @@
+name = Apache Solr Search Block
+description = Provides a block to display an alternate search form
+package = Search Toolkit
+core = 7.x
+dependencies[] = apachesolr_search
+dependencies[] = block
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

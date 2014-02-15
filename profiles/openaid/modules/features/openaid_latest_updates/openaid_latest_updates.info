@@ -1,0 +1,22 @@
+name = "OpenAid Latest Updates"
+description = "Latest updates for home page "
+core = "7.x"
+package = "Features"
+php = "5.2.4"
+version = "7.x-1.1"
+project = "openaid_latest_updates"
+dependencies[] = "context"
+dependencies[] = "ctools"
+dependencies[] = "views"
+dependencies[] = "views_load_more"
+features[context][] = "latest_updates_front"
+features[ctools][] = "context:context:3"
+features[ctools][] = "views:views_default:3.0"
+features[views_view][] = "latest_updates"
+
+; Information added by Drupal.org packaging script on 2013-12-14
+version = "7.x-1.0-rc4"
+core = "7.x"
+project = "openaid"
+datestamp = "1387061605"
+

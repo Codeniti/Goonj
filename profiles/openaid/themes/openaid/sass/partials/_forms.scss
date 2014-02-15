@@ -1,0 +1,71 @@
+
+//  Global
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  @include box-shadow(0 0 5px $gray);
+}
+
+.form-item {
+  margin: 0 0 1em 0;
+}
+
+//  Labels
+
+label,
+fieldset-legend {
+  @extend .ff-sans-serif;
+  @include adjust-font-size-to(12px, 1);
+  font-weight: 600;
+}
+
+.form-required {
+  color: $red;
+  font-weight: bold;
+}
+
+//  Fields
+
+textarea,
+select,
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"] {
+  @extend .ff-sans-serif;
+  @include border-radius(3px);
+  background-color: $white;
+  border-color: $gray $gray-light $gray-light;
+  color: $navy-dark;
+  &:focus {
+    border-color: $gray;
+  }
+}
+
+
+//  Buttons
+
+
+.form-actions {
+  margin: 0;
+  padding: 0 0 1em 0;
+  input.form-submit {
+    margin-right: cp(10,$width-content);
+  }
+}
+
+input.form-submit {
+  @extend .button;
+  @extend .green;
+}

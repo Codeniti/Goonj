@@ -1,0 +1,197 @@
+body {
+  background: $gray-dark url(../images/bg.png);
+}
+
+
+
+.not-front #main-content #content h1.page-title {
+  margin-top: 50px;
+}
+
+.page-blog-archive #content-inner,
+.page-taxonomy #content-inner,
+.front #content-inner {
+  padding: 0;
+}
+
+#main .container {
+  @include box-shadow(rgba($black, 0.2) 0 0 2px 0);
+}
+
+//  List with Anchors & Count -- Move to seprate SCSS file
+.list-with-count {
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      border-bottom: solid 1px $gray-light;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      a {
+        @include legacy-pie-clearfix;
+        @include adjust-font-size-to(12px, 1);
+        display: block;
+        padding: 5px 5px 5px 12px;
+        text-decoration: none;
+        &:hover {
+          background-color: $gray-white;
+          .count {
+            background-color: $white;
+          }
+        }
+        .name {
+          @include float-left;
+          display: block;
+          font-weight: 600;
+          padding: 8px 0 6px 0;
+          width: 80%;
+        }
+        .count {
+          @include float-right;
+          @include border-radius(3px);
+          @include box-shadow(rgba($black, 0.2) 0 0 1px 0 inset);
+          background-color: $gray-white;
+          color: $black;
+          display: block;
+          font-weight: 400;
+          padding: 8px 9px;
+        }
+      }
+    }
+    li.views-row-last {
+      border-bottom: none;
+    }
+  }
+}
+
+//List with count modifications for content region
+#content .list-with-count {
+  border: solid 1px $gray;
+  @include border-radius(3px);
+}
+
+//Related content in #content
+.related-content-block {
+  margin-bottom: $base-line-height;
+  h2 {
+    @include adjust-font-size-to(15px,1);
+    margin: 0 0 $base-line-height 0;
+  }
+  ul {
+    background: transparent image-url("bg_border-dotted.png") repeat-x 0 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      background: transparent image-url("bg_border-dotted.png") repeat-x 0 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+//Inline Images
+.node-embed-image {
+  margin-bottom: $base-line-height;
+  .caption {
+    background: transparent image-url("bg_border-dotted.png") repeat-x 0 100%;
+    font-weight: 600;
+    padding: 10px 0 0 0;
+    p {
+      @include adjust-font-size-to(11px, .9);
+      margin: 0;
+      padding: 0 0 10px 0;
+    }
+  }
+}
+.right, img[align=right] {
+  @include float-right;
+  clear: right;
+  margin-left: 20px;
+  margin-right: -20px;
+}
+.left, img[align=left] {
+  @include float-left;
+  clear: left;
+  margin-right: 20px;
+  margin-left: -20px;
+}
+
+.learn-more{
+  @include icon(100% -172px);
+  padding-right: 14px;
+  color: $navy-darkest;
+  font-weight: bold;
+}
+
+//Twipsy Tooltips
+.modal .popover, .modal .twipsy {
+  z-index: 12000;
+}
+.twipsy {
+  display: block;
+  position: absolute;
+  visibility: visible;
+  padding: 5px;
+  font-size: 11px;
+  z-index: 1000;
+  filter: alpha(opacity=80);
+  -khtml-opacity: 0.8;
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+}
+.twipsy.fade.in {
+  filter: alpha(opacity=80);
+  -khtml-opacity: 0.8;
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+}
+.twipsy.above .twipsy-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000000;
+}
+.twipsy.left .twipsy-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #000000;
+}
+.twipsy.below .twipsy-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #000000;
+}
+.twipsy.right .twipsy-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #000000;
+}
+.twipsy-inner {
+  padding: 3px 8px;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  max-width: 200px;
+  text-decoration: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.twipsy-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+}

@@ -1,0 +1,141 @@
+<?php
+
+/*
+ * Implements hook_modules_enabled()
+ */
+function openaid_wysiwyg_extra_modules_enabled($modules) {
+  // quit here if main feature was not enabled
+  if (!in_array('openaid_wysiwyg', $modules)) return;
+
+  // set the wysiwyg settings
+  /*
+  $filtered_settings = array(
+    'default' => 1,
+    'user_choose' => 0,
+    'show_toggle' => 1,
+    'theme' => 'advanced',
+    'language' => 'en',
+    'buttons' => array(
+      'default' => array(
+        'Bold' => 1,
+        'Italic' => 1,
+        'Underline' => 1,
+        'BulletedList' => 1,
+        'NumberedList' => 1,
+        'Link' => 1,
+        'Blockquote' => 1,
+        'PasteFromWord' => 1,
+        'SpecialChar' => 1,
+        'Format' => 1,
+        'Styles' => 1,
+        'SpellChecker' => 1,
+      ),
+      'drupal' => array(
+        'break' => 1,
+      ),
+    ),
+    'toolbar_loc' => 'top',
+    'toolbar_align' => 'left',
+    'path_loc' => 'bottom',
+    'resizing' => 1,
+    'verify_html' => 1,
+    'preformatted' => 0,
+    'convert_fonts_to_spans' => 1,
+    'remove_linebreaks' => 1,
+    'apply_source_formatting' => 0,
+    'paste_auto_cleanup_on_paste' => 1,
+    'block_formats' => 'p,h2,h3,h4',
+    'css_setting' => 'none',
+    'css_path' => '',
+    'css_classes' => '',
+  ); // $settings
+  */
+
+  $full_settings = array(
+    'default' => 1,
+    'user_choose' => 0,
+    'show_toggle' => 1,
+    'theme' => 'advanced',
+    'language' => 'en',
+    'buttons' => array(
+      'default' => array(
+        'Bold' => 1,
+        'Italic' => 1,
+        'Underline' => 1,
+        'BulletedList' => 1,
+        'NumberedList' => 1,
+        'Link' => 1,
+        'Blockquote' => 1,
+        'PasteFromWord' => 1,
+        'SpecialChar' => 1,
+        'Format' => 1,
+        'Styles' => 1,
+        'SpellChecker' => 1,
+      ),
+      'drupal' => array(
+        'node_embed' => 1,
+        'break' => 1,
+      ),
+    ),
+    'toolbar_loc' => 'top',
+    'toolbar_align' => 'left',
+    'path_loc' => 'bottom',
+    'resizing' => 1,
+    'verify_html' => 1,
+    'preformatted' => 0,
+    'convert_fonts_to_spans' => 1,
+    'remove_linebreaks' => 1,
+    'apply_source_formatting' => 0,
+    'paste_auto_cleanup_on_paste' => 1,
+    'block_formats' => 'p,h2,h3,h4',
+    'css_setting' => 'none',
+    'css_path' => '',
+    'css_classes' => "Image Right=div.right\nImage Left=div.left",
+  ); // $settings
+
+  // set the filtered and full html formats
+  /*
+  db_merge('wysiwyg')
+    ->key(array('format' => 'filtered_html'))
+    ->fields(array(
+      'editor' => 'ckeditor',
+      'settings' => serialize($filtered_settings),
+    ))
+    ->execute();
+  */
+
+  db_merge('wysiwyg')
+    ->key(array('format' => 'full_html'))
+    ->fields(array(
+      'editor' => 'ckeditor',
+      'settings' => serialize($full_settings),
+    ))
+    ->execute();
+
+  // update empty paragraph killer
+  db_merge('filter')
+    ->key(array(
+      'format' => 'filtered_html',
+      'name' => 'emptyparagraphkiller',
+    ))
+    ->fields(array(
+      'module' => 'emptyparagraphkiller',
+      'weight' => 10,
+      'status' => 1,
+      'settings' => serialize(array()),
+    ))
+    ->execute();
+  db_merge('filter')
+    ->key(array(
+      'format' => 'full_html',
+      'name' => 'emptyparagraphkiller',
+    ))
+    ->fields(array(
+      'module' => 'emptyparagraphkiller',
+      'weight' => 10,
+      'status' => 1,
+      'settings' => serialize(array()),
+    ))
+    ->execute();
+
+} // openaid_wysiwyg_modules_enabled()

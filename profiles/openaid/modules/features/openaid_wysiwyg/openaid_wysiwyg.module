@@ -1,0 +1,5 @@
+<?php
+/**
+ * @file
+ */
+include_once('openaid_wysiwyg.features.inc');
